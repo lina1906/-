@@ -1,0 +1,26 @@
+from typing import List
+
+
+def culc_min_numbers_of_platforms(weights: List[int], limit: int) -> int:
+    """Считает минимальное количество платформ, для перевозки роботов."""
+    weights.sort()
+    left = 0
+    right = len(weights) - 1
+    platforms = 0
+
+    while left <= right:
+        if weights[left] + weights[right] <= limit:
+            left += 1
+        right -= 1
+        platforms += 1
+
+    return platforms
+
+
+if __name__ == "__main__":
+
+    weights = list(map(int, input().split()))
+    limit = int(input())
+
+    result = culc_min_numbers_of_platforms(weights, limit)
+    print(result)
